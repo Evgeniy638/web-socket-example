@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>WebSocket</title>
+</head>
+<body>
+     <div id="messages"></div>
+     <form id = "form">
+          <textarea name="message" id="message"></textarea><br/>
+          <button type="submit">Отправить</button>
+     </form>
+
+     <script>
+          (async () => {
+               let res = await fetch("http://localhost:3000/messages")
+               let data = await res.json()
+
+               let messages = document.getElementById("messages");
+               
+               data.forEach(element => {
+                    let p = document.createElement("p")
+                    p.textContent = element
+
+                    messages.appendChild(p)
+               });
+          })()
+     </script>
+     <script src="./javascripts/script.js"></script>
+</body>
+</html>
